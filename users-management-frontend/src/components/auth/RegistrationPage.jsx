@@ -21,7 +21,7 @@ function RegistrationPage() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            // call register methof from UserService
+            // call register method from UserService
 
             const token = localStorage.getItem('token');
             await UsersService.register(formData, token);
