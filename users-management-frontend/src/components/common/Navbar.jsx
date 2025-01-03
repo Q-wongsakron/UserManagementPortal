@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import UsersService from "../service/UserService";
+import UserService from "../service/UserService";
 
 function Navbar() {
-    const isAuthenticated = UsersService.isAuthenticated();
-    const isAdmin = UsersService.isAdmin();
+    const isAuthenticated = UserService.isAuthenticated();
+    const isAdmin = UserService.isAdmin();
 
     const handleLogout = () => {
         const confirmDelete = window.confirm('Logout this user?');
         if (confirmDelete) {
-            UsersService.logout();
+            UserService.logout();
         }
     };
 

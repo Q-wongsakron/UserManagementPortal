@@ -1,5 +1,5 @@
 import React , {useState} from "react";
-import UsersService from "../service/UserService";
+import UserService from "../service/UserService";
 import { useNavigate } from "react-router-dom";
 
 function RegistrationPage() {
@@ -24,7 +24,7 @@ function RegistrationPage() {
             // call register method from UserService
 
             const token = localStorage.getItem('token');
-            await UsersService.register(formData, token);
+            await UserService.register(formData, token);
 
             // clear the form fields after successful registration
             setFormData({

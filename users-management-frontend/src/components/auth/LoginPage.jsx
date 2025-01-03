@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import { useNavigate } from "react-router-dom";
-import UsersService from "../service/UserService";
+import UserService from "../service/UserService";
 
 
 function LoginPage(){
@@ -13,18 +13,18 @@ function LoginPage(){
         e.preventDefault();
 
         try {
-            const userData = await UsersService.login(email, password)
+            const userData = await UserService.login(email, password)
 
             if(userData.token) {
                 localStorage.setItem('token', userData.token)
                 localStorage.setItem('role', userData.role)
                 navigate('/profile')
             }else{
-                setError(userData.error)
+                setError(userData.message)
             }
         } catch (error) {
-            console.log(error)
-            setError(error)
+            console.error(error)
+            setError(error.message)
             setTimeout(()=> {
                 setError('')
             },5000)

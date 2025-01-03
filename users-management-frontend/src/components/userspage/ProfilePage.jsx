@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import UsersService from "../service/UserService";
+import UserService from "../service/UserService";
 import { Link } from "react-router-dom";
 
 function ProfilePage() {
@@ -13,7 +13,7 @@ function ProfilePage() {
         try {
             
             const token = localStorage.getItem('token'); // Retrieve the token from localStorage
-            const response = await UsersService.getYourProfile(token);
+            const response = await UserService.getYourProfile(token);
             setProfileInfo(response.ourUsers);
         } catch (error) {
             console.error('Error fetching profile information:', error);
@@ -26,7 +26,7 @@ function ProfilePage() {
             <p>Name: {profileInfo.name}</p>
             <p>Email: {profileInfo.email}</p>
             <p>City: {profileInfo.city}</p>
-            {profileInfo.role == "ADMIN" && (
+            {profileInfo.role === "ADMIN" && (
                 <button><Link to={`/update-user/${profileInfo.id}`}>Update This Profile</Link></button>
             )}
         </div>

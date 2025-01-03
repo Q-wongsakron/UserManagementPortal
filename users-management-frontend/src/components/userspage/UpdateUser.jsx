@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import UsersService from "../service/UserService";
+import UserService from "../service/UserService";
 
 function UpdateUser() {
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function UpdateUser() {
   const fetchUserDataById = async (userId) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await UsersService.getUserById(userId, token);
+      const response = await UserService.getUserById(userId, token);
       const { name, email, role, city } = response.ourUsers;
       setUserData({ name, email, role, city });
     } catch (error) {
@@ -44,7 +44,7 @@ function UpdateUser() {
       );
       if (confirmDelete) {
         const token = localStorage.getItem("token");
-        const res = await UsersService.updateUser(userId, userData, token);
+        const res = await UserService.updateUser(userId, userData, token);
         console.log(res);
         // Redirect to profile page or display a success message
         navigate("/admin/user-management");

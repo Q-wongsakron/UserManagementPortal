@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import { Link } from "react-router-dom";
-import UsersService from "../service/UserService";
+import UserService from "../service/UserService";
 
 function UserManagementPage() {
     const [users, setUsers] = useState([]);
@@ -14,7 +14,7 @@ function UserManagementPage() {
         try {
             
             const token = localStorage.getItem('token')
-            const response = await UsersService.getAllUser(token);
+            const response = await UserService.getAllUser(token);
             setUsers(response.ourUsersList); // list of users is under the key 'ourUsersList'
         } catch (error) {
             console.error('Error fetching users:', error)            
@@ -28,7 +28,7 @@ function UserManagementPage() {
 
             const token = localStorage.getItem('token')
             if (confirmDelete) {
-                await UsersService.deleteUser(userId, token)
+                await UserService.deleteUser(userId, token)
                 // after deleting the user, fetch the updated list of users
                 fetchUsers();
             }
